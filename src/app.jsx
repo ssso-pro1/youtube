@@ -15,7 +15,7 @@ function App() {
 
     fetch(
       // `https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=25&key=${API_KEY}`,
-      'https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=25&key=',
+      'https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=25&key=AIzaSyC2B9IuRs5N2XzAuQt2DF0Rv9bTvWTgN8Y',
 
       requestOptions
     )
