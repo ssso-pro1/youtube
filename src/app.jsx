@@ -8,6 +8,26 @@ function App() {
 
   const [videos, setVideos] = useState([]);
 
+  const search = query => {
+    const requestOptions = {
+      method: 'GET',
+      redirect: 'follow',
+    };
+
+    fetch(
+      `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${query}&type=video&key=AIzaSyC2B9IuRs5N2XzAuQt2DF0Rv9bTvWTgN8Y`,
+      requestOptions
+    )
+      .then(response => response.json())
+      //result의 items를 돌면서 , 기존의 아이템을 다르게 만듦
+      // 아이템을 하나씩 복사하고, 그 위에 id덮어줌
+      // 기존 : item - id 라는 오브젝트 안에 videoId 였는데
+      // 오브젝트 대신 id primitive 타입으로 바꿈
+      .then(result => result.items.map(item => ({ ...item, id: item.id.videoId })))
+      .then(items => setVideos(items))
+      .catch(error => console.log('error', error));
+  };
+
   useEffect(() => {
     const requestOptions = {
       method: 'GET',
@@ -27,7 +47,7 @@ function App() {
 
   return (
     <div className={styles.app}>
-      <SearchHeader />
+      <SearchHeader onSearch={search} />
       <VideoList videos={videos} />
     </div>
   );
