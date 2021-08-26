@@ -4,7 +4,7 @@ import VideoList from './components/video_list/video_list';
 import SearchHeader from './components/search_header/search_header';
 
 function App() {
-  // const API_KEY = process.env.REACT_APP_API_KEY;
+  const API_KEY = process.env.REACT_APP_API_KEY;
 
   const [videos, setVideos] = useState([]);
 
@@ -15,7 +15,7 @@ function App() {
     };
 
     fetch(
-      `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${query}&type=video&key=AIzaSyC2B9IuRs5N2XzAuQt2DF0Rv9bTvWTgN8Y`,
+      `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${query}&type=video&key=${API_KEY}`,
       requestOptions
     )
       .then(response => response.json())
@@ -35,8 +35,7 @@ function App() {
     };
 
     fetch(
-      // `https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=25&key=${API_KEY}`,
-      'https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=25&key=AIzaSyC2B9IuRs5N2XzAuQt2DF0Rv9bTvWTgN8Y',
+      `https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=25&key=${API_KEY}`,
 
       requestOptions
     )
