@@ -1,28 +1,25 @@
 import styles from './search_header.module.css';
-import React, { useRef } from 'react';
+import React, { useRef, memo } from 'react';
 
-const SearchHeader = ({ onSearch }) => {
-  // 리액트 훅에서는 useRef 를 사용해야 계속 메모가 된다
+const SearchHeader = memo(({ onSearch }) => {
   const inputRef = useRef();
 
-  // handleSearch : 검색
   const handleSearch = () => {
     const value = inputRef.current.value;
-    //onsole.log(value); //input입력하고 search시 값 가져오는지 확인하고 진행!
     onSearch(value);
   };
 
   const onClick = () => {
-    // console.log('onClick');
     handleSearch();
   };
 
   const onKeyPress = event => {
-    // console.log('onKeyPress');
     if (event.key === 'Enter') {
       handleSearch();
     }
   };
+  console.log('Header');
+  //클릭시 발생 -> memo를 써도 props이 바뀌면 리렌더되는 문제 -> useCallback사용하기
 
   return (
     <header className={styles.header}>
@@ -42,6 +39,6 @@ const SearchHeader = ({ onSearch }) => {
       </button>
     </header>
   );
-};
+});
 
 export default SearchHeader;
